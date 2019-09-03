@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import _ from 'lodash';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import { Vector3, DoubleSide } from 'three';
+import SampleClass from '@/class/SampleClass';
 
 interface Props {
   pos: Float32Array;
@@ -27,6 +28,8 @@ export default class Project01 extends Vue {
   private renderer!: THREE.Renderer;
   private geometry!: THREE.BufferGeometry;
 
+  private sampleClass!: SampleClass;
+
 
 
 
@@ -37,10 +40,12 @@ export default class Project01 extends Vue {
   private update() {
     requestAnimationFrame( this.update.bind(this) );
     // this.geometry.attributes.position.array[0] = Math.sin(new Date().getTime());
-    (this.geometry.getAttribute('position') as THREE.BufferAttribute).needsUpdate = true;
+    // (this.geometry.getAttribute('position') as THREE.BufferAttribute).needsUpdate = true;
+    this.sampleClass.setNeedsUpdateTrue();
 
     for (let i = 0; i < this.attr.pos.count; i++) {
-      this.geometry.getAttribute('position').setZ(i, Math.sin(this.tick / 16 + Math.floor(i / 20) * 0.4) * 1.2);
+      // this.geometry.getAttribute('position').setZ(i, Math.sin(this.tick / 16 + Math.floor(i / 20) * 0.4) * 1.2);
+      this.sampleClass.setPosition(i, undefined, undefined, Math.sin(this.tick / 16 + Math.floor(i / 20) * 0.4) * 1.2);
     }
     this.tick++;
     this.renderer.render( this.scene, this.camera );
@@ -105,18 +110,23 @@ export default class Project01 extends Vue {
       // color: new THREE.BufferAttribute(this.props.color, 4),
     };
 
-    this.geometry.addAttribute('position', this.attr.pos);
+    // this.geometry.addAttribute('position', this.attr.pos);
 
     // this.geometry.addAttribute('color', this.attr.color);
-    this.geometry.setIndex(index);
+    // this.geometry.setIndex(index);
 
-    const material = new THREE.MeshBasicMaterial( {  side: DoubleSide } );
-    const mesh = new THREE.Mesh( this.geometry, material );
+    // const material = new THREE.MeshBasicMaterial( {  side: DoubleSide } );
+    // const mesh = new THREE.Mesh( this.geometry, material );
 
     // 전체 mesh의 position 변경
-    mesh.position.set(-xBoxCount / 2, -xBoxCount / 2, 0);
+    // mesh.position.set(-xBoxCount / 2, -xBoxCount / 2, 0);
 
-    this.scene.add( mesh );
+    // this.scene.add( mesh );
+
+    this.sampleClass = new SampleClass(this.props.pos, index);
+    this.sampleClass.setMeshPosition(-xBoxCount / 2, -xBoxCount / 2, 0);
+    this.scene.add(this.sampleClass.getMesh);
+
 
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
