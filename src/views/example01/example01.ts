@@ -74,8 +74,12 @@ export default class Example01 extends Vue {
     // this.camera.position.z = 5;
 
 
+    // 사각형을 그리는 법 (삼각형 두개로 그림)
+      // 1. vertex list로 전달 [1번째 점, 2번째 점, 3, 1, 3, 4] => 중복!, 크기가 크다(점 하나 당 float x, y, z 위치 정보가 들어감)
+      // 2. 정점과 순서를 구분해서 넘긴다
+      // 	vertex: [1, 2, 3, 4]
+      // 	index: [1, 2, 3, 1, 3, 4] => 크기가 작다
     const geometry = new THREE.BufferGeometry();
-
     const vertices = new Float32Array([
       -1.0, -1.0,  1.0,
       1.0, -1.0,  1.0,
