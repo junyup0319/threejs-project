@@ -51,6 +51,14 @@
             <v-list-item-title>project02</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link to="/project03">
+          <v-list-item-icon>
+            <v-icon>hdr_strong</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>project03</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar app color="teal darken-2" dark>
