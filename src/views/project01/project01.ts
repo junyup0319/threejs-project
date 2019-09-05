@@ -28,6 +28,7 @@ export default class Project01 extends Vue {
   private renderer!: THREE.Renderer;
   private geometry!: THREE.BufferGeometry;
 
+
   private sampleClass!: SampleClass;
 
 
@@ -41,11 +42,13 @@ export default class Project01 extends Vue {
     requestAnimationFrame( this.update.bind(this) );
     // this.geometry.attributes.position.array[0] = Math.sin(new Date().getTime());
     // (this.geometry.getAttribute('position') as THREE.BufferAttribute).needsUpdate = true;
-    this.sampleClass.setNeedsUpdateTrue();
+    this.sampleClass.getAttribute('position').needsUpdate = true;
 
-    for (let i = 0; i < this.attr.pos.count; i++) {
+    for (let i = 0; i < this.props.pos.length; i++) {
       // this.geometry.getAttribute('position').setZ(i, Math.sin(this.tick / 16 + Math.floor(i / 20) * 0.4) * 1.2);
-      this.sampleClass.setPosition(i, undefined, undefined, Math.sin(this.tick / 16 + Math.floor(i / 20) * 0.4) * 1.2);
+      // this.sampleClass.setPosition(i, undefined, undefined,
+      //  Math.sin(this.tick / 16 + Math.floor(i / 20) * 0.4) * 1.2);
+      this.props.pos[i * 3 + 2] = Math.sin(this.tick / 16 + Math.floor(i / 20) * 0.4) * 1.2;
     }
     this.tick++;
     this.renderer.render( this.scene, this.camera );
@@ -62,9 +65,7 @@ export default class Project01 extends Vue {
     this.renderer.setSize( width, height );
     this.$refs.renderer.appendChild(this.renderer.domElement);
 
-
     this.geometry = new THREE.BufferGeometry();
-
 
     const xPointCount = 20;
     // 점의 좌표
@@ -105,10 +106,20 @@ export default class Project01 extends Vue {
       index.push(ltIndex - xPointCount + 1);
     }
 
-    this.attr = {
-      pos: new THREE.BufferAttribute(this.props.pos, 3),
-      // color: new THREE.BufferAttribute(this.props.color, 4),
-    };
+    this.props.color.fill(1);
+
+    for (let i = 0; i < this.props.color.length / 4; i++) {
+      this.props.color.set([ 1, 0, 0, 1], i * 4);
+    }
+    // this.props.color.set([1, 0, 0, 1] , 0);
+    // this.props.color.set([1, 0, 0, 1],  4);
+    // this.props.color.set([1, 0, 1, 1],  8);
+    // this.props.color.set([0, 0, 1, 1],  12);
+
+    // this.attr = {
+    //   pos: new THREE.BufferAttribute(this.props.pos, 3),
+    //   // color: new THREE.BufferAttribute(this.props.color, 4),
+    // };
 
     // this.geometry.addAttribute('position', this.attr.pos);
 
@@ -123,9 +134,10 @@ export default class Project01 extends Vue {
 
     // this.scene.add( mesh );
 
-    this.sampleClass = new SampleClass(this.props.pos, index);
+    this.sampleClass = new SampleClass(this.props.pos, index, this.props.color);
     this.sampleClass.setMeshPosition(-xBoxCount / 2, -xBoxCount / 2, 0);
     this.scene.add(this.sampleClass.getMesh);
+
 
 
 

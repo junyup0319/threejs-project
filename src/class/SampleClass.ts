@@ -10,18 +10,25 @@ export default class SampleClass {
 
   constructor(pos: Float32Array, index: number[], color?: Float32Array ) {
     this.geometry = new THREE.BufferGeometry();
-    this.material = new THREE.MeshBasicMaterial({ side: DoubleSide });
+    if (_.isNil(color)) {
+      this.material = new THREE.MeshBasicMaterial({ side: DoubleSide });
+    } else {
+      this.material = new THREE.MeshBasicMaterial({ side: DoubleSide, vertexColors: THREE.VertexColors });
+    }
+
+
 
     this.geometry.addAttribute('position', new THREE.BufferAttribute(pos, 3));
     this.geometry.setIndex(index);
+
+    if (!_.isNil(color)) {
+      this.geometry.addAttribute('color', new THREE.BufferAttribute(color, 4));
+    }
     this.mesh = new THREE.Mesh(this.geometry, this.material);
   }
 
   public setMeshPosition(x: number, y: number, z: number) {
     this.mesh.position.set(x, y, z);
-  }
-  public setNeedsUpdateTrue() {
-    (this.geometry.getAttribute('position') as THREE.BufferAttribute).needsUpdate = true;
   }
   public setPosition(index: number, x?: number, y?: number, z?: number) {
     if (!_.isNil(x)) {
@@ -36,5 +43,8 @@ export default class SampleClass {
   }
   get getMesh() {
     return this.mesh;
+  }
+  public getAttribute(name: string): THREE.BufferAttribute {
+    return (this.geometry.getAttribute(name) as THREE.BufferAttribute);
   }
 }
