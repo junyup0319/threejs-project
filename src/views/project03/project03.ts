@@ -105,6 +105,7 @@ export default class Project03 extends Vue {
       }
 
       const val = Math.abs(normal.normalize().dot(lightVector));
+
       this.props.color[i * 4] = this.ui.originColor.r * val;
       this.props.color[i * 4 + 1] = this.ui.originColor.g * val;
       this.props.color[i * 4 + 2] = this.ui.originColor.b * val;
@@ -167,7 +168,7 @@ export default class Project03 extends Vue {
     }
     // this.props.color.fill(1);
     for (let i = 0; i < this.props.color.length / 4; i++) {
-      this.props.color.set([ this.ui.originColor.r, this.ui.originColor.g, this.ui.originColor.b, 1], i * 4);
+      this.props.color.set([ this.ui.originColor.r, this.ui.originColor.g, this.ui.originColor.b, 1], i);
     }
 
     this.mesh = new SampleClass(this.props.pos, index, this.props.color);
@@ -178,7 +179,7 @@ export default class Project03 extends Vue {
     controls.target.copy( this.mesh.getMesh.position );
     this.camera.position.set(0, 0, 30);
     this.camera.lookAt(0, 0, 0);
-    this.camera.up = new Vector3(0, 1, 0);
+    this.camera.up = new Vector3(0, 0, 1);
 
     this.centerPoint = {
       x: this.props.pos[this.props.pos.length - 1 - 2] / 2,
