@@ -37,17 +37,17 @@ export default class Template extends Vue {
     const point1 = {
       x: (center.x + Math.random() * size) * pm,
       y: (center.y + Math.random() * size) * pm,
-      z: center.z,
+      z: center.z + (Math.random() * 2 - 1) * 0.03,
     };
     const point2 = {
       x: (center.x + Math.random() * size) * pm,
       y: (center.y + Math.random() * size) * pm,
-      z: center.z,
+      z: center.z + (Math.random() * 2 - 1) * 0.03,
     };
     const point3 = {
       x: (center.x + Math.random() * size) * pm,
       y: (center.y + Math.random() * size) * pm,
-      z: center.z,
+      z: center.z + (Math.random() * 2 - 1) * 0.03,
     };
     return [point1, point2, point3];
   }
@@ -66,13 +66,13 @@ export default class Template extends Vue {
 
     const geometry = new THREE.BufferGeometry();
 
-    const materialCount = 500;
+    const materialCount = 2000;
     const vertices = new Float32Array(materialCount * 9);
     for (let i = 0; i < materialCount * 3; i += 3) {
       const point = this.getThreePoint({
         x: Math.random() * 50 * (Math.random() < 0.5 ? -1 : 1),
         y: Math.random() * 50 * (Math.random() < 0.5 ? -1 : 1),
-        z: Math.random() * -10}, 10);
+        z: Math.random() * -10}, 3);
       vertices.set([point[0].x, point[0].y, point[0].z], i * 3);
       vertices.set([point[1].x, point[1].y, point[1].z], i * 3 + 3);
       vertices.set([point[2].x, point[2].y, point[2].z], i * 3 + 6);

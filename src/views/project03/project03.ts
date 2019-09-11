@@ -176,7 +176,7 @@ export default class Project03 extends Vue {
     this.scene.add(this.mesh.getMesh);
 
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
-    controls.target.copy( this.mesh.getMesh.position );
+    // controls.target.copy( this.mesh.getMesh.position );
     this.camera.position.set(0, 0, 30);
     this.camera.lookAt(0, 0, 0);
     this.camera.up = new Vector3(0, 0, 1);

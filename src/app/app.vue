@@ -29,6 +29,25 @@
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>example01</v-list-item-title>
+            <v-list-item-subtitle>material</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/example02">
+          <v-list-item-icon>
+            <v-icon>hdr_weak</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>example02</v-list-item-title>
+            <v-list-item-subtitle>shader</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/example03">
+          <v-list-item-icon>
+            <v-icon>hdr_weak</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>example03</v-list-item-title>
+            <v-list-item-subtitle>texture - liquid</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -41,6 +60,7 @@
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>project01</v-list-item-title>
+            <v-list-item-subtitle>wave</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link to="/project02">
@@ -49,6 +69,7 @@
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>project02</v-list-item-title>
+            <v-list-item-subtitle>saturation</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item link to="/project03">
@@ -57,6 +78,16 @@
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>project03</v-list-item-title>
+            <v-list-item-subtitle>water wave</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item link to="/project04">
+          <v-list-item-icon>
+            <v-icon>hdr_strong</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>project04</v-list-item-title>
+            <v-list-item-subtitle>raw shader</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
