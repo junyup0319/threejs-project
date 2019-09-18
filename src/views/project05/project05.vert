@@ -16,11 +16,11 @@ attribute vec2 uv;
   // uv의 x와 y좌표는 각각 0~1 사이 의 값으로 정해진다 (왼쪽아래: 0,0 / 오른쪽 위: 1,1)
   // uv의 크기를 변화시켜도 우리가 그리는 각각의 좌표에 대응됨
 
-varying vec3 vPosition;
+// varying vec3 vPosition;
 varying vec2 vUv;
 
 void main()	{
-  vPosition = position;
+  // vPosition = position;
   vUv = uv;
   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); // 카메라 상의 위치? => 외우기
     // projectionMatrix: 카메라 직육면체의 4x4 행렬

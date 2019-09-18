@@ -10,6 +10,7 @@ import Project01 from '@/views/project01';
 import Project02 from '@/views/project02';
 import Project03 from '@/views/project03';
 import Project04 from '@/views/project04';
+import Project05 from '@/views/project05';
 
 Vue.use(Router);
 
@@ -56,6 +57,11 @@ export default new Router({
       path: '/project04',
       name: 'project04',
       component: Project04,
+    },
+    {
+      path: '/project05',
+      name: 'project05',
+      component: Project05,
     },
   ],
 });

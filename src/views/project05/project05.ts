@@ -1,16 +1,17 @@
+// file created at 2019-9-18
+// Auto-generated files project05.ts
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import * as THREE from 'three';
 
 // @ts-ignore
-import vs from '!!raw-loader!./default.vert';
+import vs from '!!raw-loader!./project05.vert';
 // @ts-ignore
-import fs from '!!raw-loader!./default.frag';
-
+import fs from '!!raw-loader!./project05.frag';
 
 @Component({})
-export default class Example01 extends Vue {
+export default class Project05 extends Vue {
   public $refs!: {
     renderer: HTMLElement,
   };
@@ -54,10 +55,13 @@ export default class Example01 extends Vue {
     // image 경로는 public을 기준으로 설정해야함
       // 브라우저에서 처리하는 것이므로
     const texture = new THREE.TextureLoader().load('/image.jpg');
+    const texture2 = new THREE.TextureLoader().load('/image2.jpeg');
     const normalMap = new THREE.TextureLoader().load('/normal_map1.jpg');
 
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
+    texture2.wrapS = THREE.RepeatWrapping;
+    texture2.wrapT = THREE.RepeatWrapping;
 
     normalMap.wrapS = THREE.RepeatWrapping;
     normalMap.wrapT = THREE.RepeatWrapping;
@@ -65,9 +69,14 @@ export default class Example01 extends Vue {
     this.material = new THREE.RawShaderMaterial( {
       uniforms: {
         time: {value: 0},
+        show: {value: 0},
         texture1: {
           type: 't',
           value: texture,
+        },
+        texture2: {
+          type: 't',
+          value: texture2,
         },
         normalMap: {
           type: 't',

@@ -90,6 +90,15 @@
             <v-list-item-subtitle>raw shader</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link to="/project05">
+          <v-list-item-icon>
+            <v-icon>hdr_strong</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>project05</v-list-item-title>
+            <v-list-item-subtitle>texture</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar app color="teal darken-2" dark>

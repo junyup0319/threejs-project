@@ -5,6 +5,7 @@ precision mediump int;
 
 uniform float time;
 uniform sampler2D texture1;
+uniform sampler2D texture2;
 uniform sampler2D normalMap;
 
 // uv는 그릴 좌표에 대응되는 물체의 좌표
@@ -18,8 +19,8 @@ void main()	{
 
     // x, y를 각각 2배 늘리면 1/4크기에 texture가 매핑된다 (매핑되지 않는 부분은 매핑된 가장 마지막 좌표로 그려짐)
     // cpu에서 반복 설정을 해주면 2X2의 이미지가 나타난다
-  uv.x *= 0.9;
-  uv.y *= 0.9;
+  // uv.x *= 0.9;
+  // uv.y *= 0.9;
 
   vec4 movement = texture2D(normalMap, vUv + vec2(-time * 0.01, time * 0.02));
 	// movement = movement * vUv.y * sin(time * 4.) * 1.;
@@ -28,8 +29,12 @@ void main()	{
 
   // texture2D: texture에서 uv좌표에 맞는 색상을 뽑아줌
     // uv를 변경해줌으로 물체의 왜곡을 만들 수 있다!
-  gl_FragColor = texture2D(texture1, uv);
-  // gl_FragColor = vec4(1, 1, 1, 1);
+  vec4 tc1 = texture2D(texture1, uv);
+  vec4 tc2 = texture2D(texture2, uv);
+  float colorRatio = abs(sin(time * 0.1));
+  // gl_FragColor = tc1 * colorRatio + tc2 * (1.0 - colorRatio);
+  gl_FragColor = tc1;
+  // gl_FragColor = tc1 * sin(uv.x);
 }
 
 
